@@ -1,0 +1,39 @@
+public class MainActivity extends AppCompatActivity {
+    TextView totalExpense;
+    RecyclerView expenseList;
+    FloatingActionButton addExpenseBtn;
+    DatabaseHelper databaseHelper;
+    List<Expense> expenses;
+    ExpenseAdapter adapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        totalExpense = findViewById(R.id.total_expense);
+        expenseList = findViewById(R.id.expense_list);
+        addExpenseBtn = findViewById(R.id.add_expense_btn);
+
+        databaseHelper = new DatabaseHelper(this);
+        expenses = databaseHelper.getAllExpenses();
+        adapter = new ExpenseAdapter(this, expenses);
+
+        expenseList.setLayoutManager(new LinearLayoutManager(this));
+        expenseList.setAdapter(adapter);
+
+        updateTotal();
+
+        addExpenseBtn.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, AddExpenseActivity.class));
+        });
+    }
+
+    private void updateTotal() {
+        double total = 0;
+        for (Expense e : expenses) {
+            total += e.getAmount();
+        }
+        totalExpense.setText("₹ " + total);
+    }
+}
