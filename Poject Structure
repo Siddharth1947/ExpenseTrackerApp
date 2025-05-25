@@ -1,0 +1,19 @@
+ExpenseTracker/
+├── app/
+│   ├── java/
+│   │   └── com.example.expensetracker/
+│   │       ├── MainActivity.java
+│   │       ├── AddExpenseActivity.java
+│   │       ├── ExpenseAdapter.java
+│   │       └── DatabaseHelper.java
+│   │
+│   └── res/
+│       ├── layout/
+│       │   ├── activity_main.xml
+│       │   ├── activity_add_expense.xml
+│       │   └── item_expense.xml
+│       │
+│       └── values/
+│           └── strings.xml
+│
+└── AndroidManifest.xml
